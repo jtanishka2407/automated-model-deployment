@@ -5,13 +5,11 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app import app
 
-
 def test_home_route():
     client = app.test_client()
     response = client.get("/")
     assert response.status_code == 200
-    assert b"ML Model API is running!" in response.data
-
+    assert b"Iris Flower Prediction" in response.data
 
 def test_predict_route():
     client = app.test_client()
@@ -27,4 +25,3 @@ def test_predict_route():
     data = response.get_json()
     assert "prediction" in data
     assert data["prediction"] in [0, 1, 2]
-    
