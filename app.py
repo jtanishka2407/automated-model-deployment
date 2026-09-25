@@ -1,14 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import joblib
 
 app = Flask(__name__)
 
 model = joblib.load("model.pkl")
 
+from flask import render_template
 
 @app.route("/")
 def home():
-    return "ML Model API is running!"
+    return render_template("index.html")
 
 
 @app.route("/predict", methods=["POST"])
